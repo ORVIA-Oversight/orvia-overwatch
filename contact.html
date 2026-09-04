@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Request a demo — ORVIA Overwatch</title>
+<meta name="description" content="Talk to the ORVIA Overwatch team about Track, PTT and Control for your operation.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="brand"><img src="media/logo_lockup.png" alt="ORVIA Track"></a>
+    <div class="navlinks">
+      <a href="index.html" data-page="index.html">Home</a>
+      <a href="platform.html" data-page="platform.html">Platform</a>
+      <a href="sectors.html" data-page="sectors.html">Sectors</a>
+      <a href="about.html" data-page="about.html">About</a>
+      <a href="contact.html" data-page="contact.html" class="navcta active">Request a demo</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap" style="padding-bottom:40px;">
+  <div class="hero-grid" style="align-items:flex-start;">
+    <div>
+      <div class="eyebrow">Request a demo</div>
+      <h1 style="font-size:38px;">Tell us about your operation. We'll show you Overwatch running on it.</h1>
+      <p class="lede">A live walkthrough using your own team structure and terminology — we'll follow up within one business day.</p>
+
+      <div style="margin-top:40px;">
+        <div class="grid grid-2" style="border:none; background:none;">
+          <div class="cell" style="padding:0 24px 0 0; background:none; border:none;">
+            <div class="tag">RESPONSE TIME</div>
+            <h3 style="font-size:16px;">Under 1 business day</h3>
+          </div>
+          <div class="cell" style="padding:0; background:none; border:none;">
+            <div class="tag">FOR ORGANISERS</div>
+            <h3 style="font-size:16px;">Ask about event-scale setup</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="shot" style="padding:32px; background:var(--bg-raised);">
+      <form id="demoForm">
+        <div class="form-grid">
+          <div class="field"><label for="fname">First name</label><input id="fname" name="fname" type="text" required></div>
+          <div class="field"><label for="lname">Last name</label><input id="lname" name="lname" type="text" required></div>
+          <div class="field full"><label for="email">Work email</label><input id="email" name="email" type="email" required></div>
+          <div class="field full"><label for="org">Organisation</label><input id="org" name="org" type="text" required></div>
+          <div class="field">
+            <label for="sector">Sector</label>
+            <select id="sector" name="sector">
+              <option>Milsim / airsoft</option>
+              <option>Events</option>
+              <option>Fire &amp; rescue</option>
+              <option>Search &amp; rescue</option>
+              <option>Emergency response</option>
+              <option>Security / remote teams</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="interest">Most interested in</label>
+            <select id="interest" name="interest">
+              <option>ORVIA Track</option>
+              <option>ORVIA PTT</option>
+              <option>ORVIA Control</option>
+              <option>All three</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="field full"><label for="notes">What's driving this? (optional)</label><textarea id="notes" name="notes" placeholder="e.g. upcoming event, current setup, team size"></textarea></div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Request a demo</button>
+      </form>
+      <div id="formSuccess" class="form-success">
+        <div class="tag">REQUEST RECEIVED</div>
+        <h3>We've got it.</h3>
+        <p>Someone from the team will reach out within one business day. In the meantime, take a look at <a href="platform.html" style="color:var(--teal);">how the platform works</a>.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Prefer email?</div>
+      <h2>Reach us directly</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="cell"><div class="tag">DEMOS &amp; SALES</div><h3 style="font-size:16px;">hello@orvia.org.uk</h3><p>New enquiries, demos and event/organisation setup.</p></div>
+      <div class="cell"><div class="tag">PHONE</div><h3 style="font-size:16px;">0114 399 8231</h3><p>For urgent event-support enquiries.</p></div>
+      <div class="cell"><div class="tag">PARENT COMPANY</div><h3 style="font-size:16px;">ORVIA Oversight Ltd</h3><p>Overwatch is developed by ORVIA Oversight Ltd.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footgrid">
+      <div class="footcol"><a href="index.html" class="brand"><img src="media/logo_lockup.png" alt="ORVIA Track"></a></div>
+      <div class="footcol">
+        <h4>PLATFORM</h4>
+        <a href="platform.html">Track / PTT / Control</a>
+        <a href="sectors.html">Sectors</a>
+        <a href="contact.html">Request a demo</a>
+      </div>
+      <div class="footcol">
+        <h4>COMPANY</h4>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+    <div class="footbottom">
+      <span>© 2026 ORVIA Overwatch — developed by ORVIA Oversight Ltd</span>
+      <span>SEE. UNDERSTAND. PROTECT.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

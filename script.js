@@ -7,7 +7,39 @@
   });
 })();
 
+const ORVIA_ASSET_BASE = 'https://raw.githubusercontent.com/ORVIA-Oversight/orvia-public-website/main/';
+const ORVIA_MEDIA = {
+  'logo_lockup.png': 'assets/logos/ORVIA-wordmark-white.png',
+  'milsim-hero-1.jpg': 'track-field-coordination.jpg',
+  'milsim-hero-2.jpg': 'vehicle-tailgate-control.jpg',
+  'tent-radios-soldiers.jpg': 'incident-room-planning.jpg',
+  'vehicle-command-desk.jpg': 'vehicle-tailgate-control.jpg',
+  'cqb-woodland-team.jpg': 'track-field-coordination.jpg',
+  'wildfire-hero.jpg': 'flood-street-response.jpg',
+  'mountain-rope-team.jpg': 'moorland-search-team.jpg',
+  'hillside-tablet-drone.jpg': 'track-field-coordination.jpg',
+  'cqb-indoor-team.jpg': 'incident-room-planning.jpg',
+  'event-marshal.jpg': 'community-street-coordination.jpg',
+  'flood-response.jpg': 'flood-street-response.jpg',
+  'gravel-yard-tablets.jpg': 'vehicle-tailgate-control.jpg',
+  'planning-table.jpg': 'multi-agency-planning.jpg',
+  'aerial-event-muster.jpg': 'community-street-coordination.jpg'
+};
+
+function repairMedia(){
+  document.querySelectorAll('img[src^="media/"]').forEach(img => {
+    const filename = img.getAttribute('src').split('/').pop();
+    const replacement = ORVIA_MEDIA[filename];
+    if(replacement){
+      img.src = ORVIA_ASSET_BASE + replacement;
+      img.referrerPolicy = 'no-referrer';
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', ()=>{
+  repairMedia();
+
   const f = document.getElementById('demoForm');
   if(!f) return;
 

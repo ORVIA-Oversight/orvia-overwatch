@@ -74,3 +74,14 @@
 .sense-mini-note{margin-top:18px;color:#9fb3c9;font-size:11px}
 @media(max-width:1020px){.sense-hero-grid,.sense-truth,.sense-interest-grid{grid-template-columns:1fr}.sense-hero-grid{padding:68px 0}.sense-flow{grid-template-columns:repeat(2,1fr)}.sense-cards{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:720px){.sense-hero-grid{min-height:auto;padding:56px 0}.sense-hero h1{font-size:48px}.sense-map{min-height:390px}.sense-strip-grid{grid-template-columns:1fr 1fr}.sense-strip-item:nth-child(2){border-right:0}.sense-strip-item:nth-child(-n+2){border-bottom:1px solid #dfe7f1}.sense-flow,.sense-cards{grid-template-columns:1fr}.sense-section{padding:62px 0}.sense-interest{padding:30px 24px}.signal{grid-template-columns:1fr}.status-row{grid-template-columns:1fr}.badge{justify-self:start}}
+.sense-product-visual{margin:34px 0 0;overflow:hidden;border:1px solid #dfe7f1;border-radius:24px;background:#071b39;box-shadow:0 28px 80px -44px rgba(4,31,70,.7)}
+.sense-product-visual img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.sense-product-visual figcaption{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:13px 16px;background:#fff;color:#07336a;border-top:1px solid #dfe7f1}
+.sense-product-visual figcaption span{display:inline-flex;padding:6px 9px;border-radius:999px;background:#fff3db;color:#8a5b00;font-size:9px;font-weight:950;letter-spacing:.07em;white-space:nowrap}
+.sense-product-visual figcaption b{font-size:12px;text-align:right}
+.sense-product-hero{margin:0;border-color:rgba(255,255,255,.18);box-shadow:0 34px 90px -36px rgba(0,0,0,.85)}
+.sense-product-hero figcaption{background:#071b39;color:#d1deec;border-top-color:rgba(255,255,255,.12)}
+.sense-product-wide{margin-top:36px}
+.dark-frame{border-color:rgba(255,255,255,.14)}
+.dark-frame figcaption{background:#082853;color:#fff;border-top-color:rgba(255,255,255,.12)}
+@media(max-width:720px){.sense-product-visual{border-radius:18px}.sense-product-visual figcaption{align-items:flex-start;flex-direction:column}.sense-product-visual figcaption b{text-align:left}}

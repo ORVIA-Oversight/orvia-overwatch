@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/sense.html",
+      "destination": "/sense",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/sense",
+      "destination": "/sense.html"
+    }
+  ]
+}

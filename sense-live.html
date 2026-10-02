@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ORVIA Overwatch SENSE | Live Integration Lab</title>
+  <meta name="description" content="ORVIA Overwatch SENSE integration lab using MapLibre and the Traccar adapter.">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.7.1/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body{margin:0;background:#071a38;color:#fff;font-family:Arial,sans-serif}.lab{width:min(1280px,calc(100% - 32px));margin:0 auto;padding:28px 0 44px}
+    .top{display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap}.top h1{margin:6px 0 8px;font-size:clamp(30px,5vw,54px)}
+    .muted{color:#b8c7d9}.badge{display:inline-flex;padding:8px 11px;border:1px solid rgba(255,255,255,.25);border-radius:999px;font-weight:800;font-size:12px}
+    .badge.live{background:#0d8b82}.badge.sim{background:#7a5b17}.badge.err{background:#8e3030}.grid{display:grid;grid-template-columns:1fr 330px;gap:18px;margin-top:22px}
+    #map{height:68vh;min-height:520px;border:1px solid rgba(255,255,255,.18);border-radius:14px;overflow:hidden}
+    .panel{background:#0b2f5e;border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:16px;max-height:68vh;overflow:auto}
+    .track{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.1)}.track:last-child{border:0}.track b{display:block}.track small{color:#b8c7d9}
+    .dot{width:13px;height:13px;border-radius:50%;background:#14b9c9;border:2px solid #fff;box-shadow:0 0 0 5px rgba(20,185,201,.2)}
+    .links{display:flex;gap:10px;flex-wrap:wrap}.links a{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.25);padding:9px 12px;border-radius:7px}
+    @media(max-width:850px){.grid{grid-template-columns:1fr}#map{height:55vh;min-height:420px}.panel{max-height:none}}
+  </style>
+</head>
+<body>
+<div class="lab">
+  <div class="top">
+    <div><div class="muted">ORVIA OVERWATCH / SENSE</div><h1>Live Integration Lab</h1><div class="muted">MapLibre operating picture with a Traccar-compatible tracking adapter.</div></div>
+    <div><span id="mode" class="badge sim">CONNECTING</span></div>
+  </div>
+  <div class="links" style="margin-top:16px"><a href="/sense">← SENSE</a><a href="/platform.html">Platform</a></div>
+  <div class="grid">
+    <div id="map"></div>
+    <aside class="panel">
+      <strong>TRACK FEED</strong>
+      <p class="muted" id="provider">Waiting for adapter…</p>
+      <div id="tracks"></div>
+      <p class="muted" style="font-size:12px;margin-top:18px">Simulation is explicitly labelled until a self-hosted Traccar service is connected. The same adapter contract can later receive Meshtastic/TAK gateways through ORVIA.</p>
+    </aside>
+  </div>
+</div>
+<script src="https://unpkg.com/maplibre-gl@5.7.1/dist/maplibre-gl.js"></script>
+<script>
+const map = new maplibregl.Map({
+  container:'map',
+  style:'https://demotiles.maplibre.org/style.json',
+  center:[-1.479,53.549],
+  zoom:14
+});
+map.addControl(new maplibregl.NavigationControl(), 'top-right');
+const markers = new Map();
+function setMode(mode){
+ const el=document.getElementById('mode'); el.textContent=mode;
+ el.className='badge '+(mode==='LIVE'?'live':mode==='SIMULATED'?'sim':'err');
+}
+function updateMarker(t){
+ let marker=markers.get(t.id);
+ if(!marker){
+   const el=document.createElement('div'); el.className='dot'; el.title=t.name;
+   marker=new maplibregl.Marker({element:el}).setLngLat([t.lon,t.lat]).addTo(map); markers.set(t.id,marker);
+ } else marker.setLngLat([t.lon,t.lat]);
+}
+async function refresh(){
+ try{
+  const r=await fetch('/api/tracks',{cache:'no-store'}); const data=await r.json();
+  if(!r.ok || !data.ok) throw new Error(data.error||'Track adapter unavailable');
+  setMode(data.mode); document.getElementById('provider').textContent=data.provider+(data.note?' · '+data.note:'');
+  document.getElementById('tracks').innerHTML=data.tracks.map(t=>'<div class="track"><b>'+t.name+'</b><small>'+t.status+' · '+t.source+' · age '+t.ageSeconds+'s</small></div>').join('');
+  data.tracks.forEach(updateMarker);
+ }catch(e){setMode('ERROR');document.getElementById('provider').textContent=e.message;}
+}
+map.on('load',()=>{refresh();setInterval(refresh,10000)});
+</script>
+</body></html>

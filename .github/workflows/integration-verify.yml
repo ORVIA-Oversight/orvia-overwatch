@@ -1,0 +1,24 @@
+name: Overwatch integration verification
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Syntax-check server adapter
+        run: node --check api/tracks.js
+      - name: Verify integration page assets
+        run: |
+          test -f sense-live.html
+          grep -q "maplibre-gl" sense-live.html
+          grep -q "/api/tracks" sense-live.html
